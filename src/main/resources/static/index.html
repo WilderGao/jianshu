@@ -1,0 +1,42 @@
+<!DOCTYPE html >
+<html>
+<head>
+<title>简输</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://static.runoob.com/assets/qrcode/qrcode.min.js"></script>
+    <style type="text/css">
+        #qrcode {
+            margin:auto;
+            margin-top:10%;
+            box-shadow: 10px 10px 5px #888888;
+}
+#tips {
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+<div id="qrcode" style="width:200px; height:200px;">
+    </div>
+    <p id="tips">App扫描二维码连接电脑</p>
+<script type="text/javascript">
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 200,
+	height : 200
+});
+qrcode.makeCode('6666');
+ 
+var wx = new WebSocket('ws://120.77.38.183:8080/ws');
+wx.onmessage = function(e){
+    let data = JSON.parse(e.data);
+    if(data.type == 0){
+        qrcode.makeCode(data.text);
+    } else{
+      window.location.href=data.text;  
+    }    
+}
+</script>
+</body>
+</html>
