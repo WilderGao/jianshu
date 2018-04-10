@@ -34,4 +34,8 @@ public class WebSocketSessionMap {
     public void put(String uuid, WebSocketSession socketSession){
         map.put(uuid, socketSession);
     }
+
+    public void remove(String uuid){
+        map.remove(uuid);
+    }
 }

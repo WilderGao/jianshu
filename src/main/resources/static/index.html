@@ -28,7 +28,7 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
 });
 qrcode.makeCode('6666');
  
-var wx = new WebSocket('ws://120.77.38.183:8080/ws');
+var wx = new WebSocket('ws://120.77.38.183:80/ws');
 wx.onmessage = function(e){
     let data = JSON.parse(e.data);
     if(data.type == 0){
